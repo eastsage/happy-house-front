@@ -1,10 +1,10 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="dark">
+    <b-navbar toggleable="lg" type="light" variant="light">
       <b-navbar-brand href="#">
         <router-link :to="{ name: 'main' }">
           <b-img
-            :src="require('@/assets/ssafy_logo.png')"
+            :src="require('@/assets/hlogo3.png')"
             id="logo"
             class="d-inline-block align-top"
             alt="logo"
@@ -14,7 +14,9 @@
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
+
       <b-collapse id="nav-collapse" is-nav>
+        <!--
         <b-navbar-nav>
           <b-nav-item href="#">
             <router-link :to="{ name: 'main' }" class="link">
@@ -37,7 +39,59 @@
               <b-icon icon="calendar-check" animation="fade" font-scale="2"></b-icon>
               TodoList
             </router-link>
+            
           </b-nav-item>
+          
+        </b-navbar-nav>
+        -->
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item-dropdown right>
+            <template #button-content>
+              <b-icon icon="building" font-scale="2"></b-icon>아파트
+            </template>
+            <b-dropdown-item href="#">
+              <router-link :to="{ name: 'join' }" class="link">
+                <b-icon icon="search" font-scale="1"></b-icon>아파트 검색
+              </router-link>
+            </b-dropdown-item>
+            <b-dropdown-item href="#">
+              <router-link :to="{ name: 'house' }" class="m-2 link"> 
+                동현이네 집 </router-link>
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+        
+          <b-nav-item-dropdown right>
+            <template #button-content>
+              <b-icon icon="person-circle" font-scale="2"></b-icon>회원정보
+            </template>
+            <b-dropdown-item href="#">
+              <router-link :to="{ name: 'join' }" class="link">
+                <b-icon icon="person-check" font-scale="1"></b-icon> 마이페이지
+              </router-link>
+            </b-dropdown-item>
+            <b-dropdown-item href="#">
+              <router-link :to="{ name: 'house' }" class="m-2 link">
+                <b-icon icon="house-fill" font-scale="1"></b-icon> 비밀번호 찾기 </router-link>
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+          <b-nav-item-dropdown right>
+            <template #button-content>
+              <b-icon icon="clipboard" font-scale="2"></b-icon>게시판
+            </template>
+            <b-dropdown-item href="#">
+              <router-link :to="{ name: 'board' }" class="link">
+                <b-icon icon="clipboard-check" font-scale="1"></b-icon> 공지 게시판
+              </router-link>
+            </b-dropdown-item>
+            <b-dropdown-item href="#">
+              <router-link :to="{ name: 'house' }" class="m-2 link"> 
+                <b-icon icon="question-square" font-scale="1"></b-icon> QnA 게시판 </router-link>
+            </b-dropdown-item>
+          </b-nav-item-dropdown>
+          <router-link :to="{ name: 'insta' }" class="m-2 link">
+              <b-icon icon="github" font-scale="2"></b-icon>
+              Github
+            </router-link>
         </b-navbar-nav>
 
         <!-- after login -->
@@ -70,6 +124,7 @@
       </b-collapse>
     </b-navbar>
   </div>
+  
 </template>
 
 <script>
