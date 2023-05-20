@@ -8,7 +8,12 @@
     </b-row>
     <b-row>
       <b-col>
-        <house-search-bar></house-search-bar>
+        <house-search-bar @change="testdata"></house-search-bar>
+      </b-col>
+    </b-row>
+    <b-row class="mt-3">
+      <b-col cols="12">
+        <the-kakao-map :chargers="HouseList"></the-kakao-map>
       </b-col>
     </b-row>
     <b-row>
@@ -25,6 +30,7 @@
 import HouseSearchBar from "@/components/house/HouseSearchBar.vue";
 import HouseList from "@/components/house/HouseList.vue";
 import HouseDetail from "@/components/house/HouseDetail.vue";
+import TheKakaoMap from "@/components/TheKakaoMap.vue";
 
 export default {
   name: "AppHouse",
@@ -32,7 +38,13 @@ export default {
     HouseSearchBar,
     HouseList,
     HouseDetail,
+    TheKakaoMap,
   },
+  methods: {
+    testdata(){
+      console.log(this.HouseList)
+    }
+  }
 };
 </script>
 <style scoped>
