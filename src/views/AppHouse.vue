@@ -8,7 +8,7 @@
     </b-row>
     <b-row>
       <b-col>
-        <house-search-bar @change="testdata"></house-search-bar>
+        <house-search-bar></house-search-bar>
       </b-col>
     </b-row>
     <b-row class="mt-3">
@@ -18,7 +18,7 @@
     </b-row>
     <b-row>
       <b-col cols="6" align="left">
-        <house-list />
+        <house-list :houses="HouseList"/>
       </b-col>
       <b-col cols="6">
         <house-detail />
@@ -40,10 +40,18 @@ export default {
     HouseDetail,
     TheKakaoMap,
   },
+  data(){
+    return{
+      houses: []
+    }
+  },
   methods: {
     testdata(){
       console.log(this.HouseList)
     }
+  },
+  mounted() {
+    this.testdata();
   }
 };
 </script>
