@@ -9,7 +9,12 @@ const houseStore = {
         houses: [],
         house: null,
     },
-    getters: {},
+    getters: {
+        getHouses: (state) => {
+            console.log("get func call!!!!!!!!");
+            return state.houses;
+        },
+    },
     mutations: {
         CLEAR_SIDO_LIST(state) {
             state.sidos = [{ value: null, text: "선택하세요" }];
