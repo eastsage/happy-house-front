@@ -1,4 +1,4 @@
-import { sidoList, gugunList, dongList, houseList } from "@/api/house.js";
+import { sidoList, gugunList, dongList, houseList,getHouseDeal, getHouseGraph } from "@/api/house.js";
 
 const houseStore = {
     namespaced: true,
@@ -8,6 +8,8 @@ const houseStore = {
         dongs: [{ value: null, text: "선택하세요" }],
         houses: [],
         house: null,
+        housedeal: null,
+        housegraph: []
     },
     getters: {
         getHouses: (state) => {
@@ -50,6 +52,12 @@ const houseStore = {
         SET_DETAIL_HOUSE(state, house) {
             state.house = house;
         },
+        SET_HOUSE_DEAL(state, housedeal) {
+            state.housedeal = housedeal;
+        },
+        SET_HOUSE_GRAPH(state, housegraph) {
+            state.housegraph = housegraph
+        }
     },
     actions: {
         getSido: ({ commit }) => {
@@ -99,10 +107,37 @@ const houseStore = {
                 }
             );
         },
-        detailHouse: ({ commit }, house) => {
+        async detailHouse ({ commit },aptCode ) {
             // 나중에 house.일련번호를 이용하여 API 호출
-            commit("SET_DETAIL_HOUSE", house);
+            // commit("SET_DETAIL_HOUSE", house);
+            await getHouseDeal(
+                aptCode,
+                ({ data }) => {
+                    console.log(data);
+                    commit("SET_HOUSE_DEAL", data);
+                },
+                (error) => {
+                    console.log(error);
+                }
+            )
+            
         },
+        async detailHousegraph({ commit }, aptCode) {
+            // 나중에 house.일련번호를 이용하여 API 호출
+            // commit("SET_DETAIL_HOUSE", house);
+            await getHouseGraph(
+                aptCode,
+                ({ data }) => {
+                    console.log(data);
+                    commit("SET_HOUSE_GRAPH", data);
+                },
+                (error) => {
+                    console.log(error);
+                }
+            )
+            
+        },
+
     },
 };
 
