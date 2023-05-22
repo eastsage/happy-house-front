@@ -60,8 +60,6 @@ export default {
     this.CLEAR_APT_LIST();
     this.CLEAR_DONG_LIST();
     this.getSido();
-    this.getGugun();
-    this.getDong();
   },
   methods: {
     ...mapActions(houseStore, ["getSido", "getGugun","getDong", "getHouseList"]),

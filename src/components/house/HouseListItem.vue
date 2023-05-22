@@ -2,7 +2,7 @@
     <a href="#">
         <b-row
             class="m-2"
-            @click="selectHouse"
+            @click="selectHouse()"
             @mouseover="colorChange(true)"
             @mouseout="colorChange(false)"
             :class="{ 'mouse-over-bgcolor': isColor }"
@@ -24,6 +24,7 @@
 <script>
 import { mapActions } from "vuex";
 
+
 const houseStore = "houseStore";
 
 export default {
@@ -37,11 +38,14 @@ export default {
         house: Object,
     },
     methods: {
-        ...mapActions(houseStore, ["detailHouse"]),
-        selectHouse() {
-            // console.log("listRow : ", this.house);
-            // this.$store.dispatch("getHouse", this.house);
-            this.detailHouse(this.house);
+        ...mapActions(houseStore, ["detailHouse","detailHousegraph"]),
+        async selectHouse() {
+            console.log("AA");
+            console.log(this.house);
+            await this.detailHouse(this.house.aptCode);
+            await this.detailHousegraph(this.house.aptCode);
+            
+            this.$router.push("/housedetail")
         },
         colorChange(flag) {
             this.isColor = flag;

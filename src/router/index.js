@@ -4,7 +4,7 @@ import AppMain from "@/views/AppMain";
 import AppInstagram from "@/views/AppInstagram";
 import AppHouse from "@/views/AppHouse";
 import AppTodo from "@/views/AppTodo";
-
+import AppHouseDetail from "@/views/AppHouseDetail.vue";
 import store from "@/store";
 
 Vue.use(VueRouter);
@@ -45,6 +45,11 @@ const routes = [
     path: "/house",
     name: "house",
     component: AppHouse,
+  },
+  {
+    path: "/housedetail",
+    name: "housedetail",
+    component: AppHouseDetail,
   },
   {
     path: "/todo",
