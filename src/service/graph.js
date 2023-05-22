@@ -82,28 +82,29 @@
 // };
 // export default show
 
-import { Line } from 'vue-chartjs';
+import Chart from 'chart.js/auto';
 
-export default {
-  extends: Line,
-  mounted() {
-    this.renderChart({
-      labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-      datasets: [
-        {
-          label: '2021년',
-          borderColor: '#f87979',
-          data: [100, 200, 150, 300, 250, 400, 350, 500, 450, 600, 550, 700]
-        },
-        {
-          label: '2022년',
-          borderColor: '#7997f8',
-          data: [200, 300, 250, 400, 350, 500, 450, 600, 550, 700, 650, 800]
-        }
-      ]
-    }, {
+const showBarChart = function(chartId, labels, datasets) {
+  const ctx = document.getElementById(chartId);
+  if (!ctx) return; // 차트 컨테이너가 존재하지 않으면 함수 종료
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets,
+    },
+    options: {
       responsive: true,
-      maintainAspectRatio: false
-    });
-  }
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 };
+
+export { showBarChart };
+
