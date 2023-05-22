@@ -88,7 +88,7 @@ const showBarChart = function(chartId, labels, datasets) {
   const ctx = document.getElementById(chartId);
   if (!ctx) return; // 차트 컨테이너가 존재하지 않으면 함수 종료
 
-  new Chart(ctx, {
+  return new Chart(ctx, {
     type: 'line',
     data: {
       labels,
