@@ -117,7 +117,8 @@
               </router-link>
             </b-dropdown-item>
             <b-dropdown-item href="#">
-              <router-link :to="{ name: 'login' }" class="link"> <b-icon icon="key"></b-icon> 로그인 </router-link>
+              <router-link :to="{ name: 'login' }" class="link">
+                <b-icon icon="key"></b-icon> 로그인 </router-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -169,5 +170,7 @@ export default {
 
 .link {
   text-decoration: none;
+  color: rgb(51, 172, 195);
+  
 }
 </style>
