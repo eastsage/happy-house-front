@@ -7,7 +7,7 @@
         </b-row>
         <b-row class="mb-1">
             <b-col class="text-right">
-                <b-button variant="outline-primary" @click="moveWrite()">글쓰기</b-button>
+                <b-button variant="outline-primary" v-if="isAdmin" @click="moveWrite()">글쓰기</b-button>
                 <!-- ADMIN만 글쓰기 가능하게 바꿔야함 -->
             </b-col>
         </b-row>
@@ -66,6 +66,14 @@ export default {
                 console.log(error);
             }
         );
+    },
+    computed:{
+        isAdmin(){
+            if(this.$session.get("user").role=="admin"){
+                return true;
+            }
+            return false;
+        }
     },
     methods: {
         moveWrite() {
