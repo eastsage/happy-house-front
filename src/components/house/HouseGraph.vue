@@ -58,9 +58,7 @@ export default {
             options: [],
         };
     },
-    created() {
-        console.log(this.housegraph);
-    },
+    created() {},
     mounted() {
         this.makeOptions();
         this.isChartContainerReady = true;
