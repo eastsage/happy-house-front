@@ -7,7 +7,7 @@
         <div>
       <b-card
     text-variant="black"
-    wi
+    
   >
   <img src = "@/assets/hlogo3.png" width="40%">
   

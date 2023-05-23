@@ -47,22 +47,22 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
             <template #button-content>
-              <b-icon icon="building" font-scale="2"></b-icon>아파트
+              <b-icon icon="building" font-scale="2"></b-icon> 아파트
             </template>
             <b-dropdown-item href="#">
               <router-link :to="{ name: 'join' }" class="link">
-                <b-icon icon="search" font-scale="1"></b-icon>아파트 검색
+                <b-icon icon="search" font-scale="1"></b-icon> 아파트 검색
               </router-link>
             </b-dropdown-item>
             <b-dropdown-item href="#">
-              <router-link :to="{ name: 'house' }" class="m-2 link"> 
+              <router-link :to="{ name: 'house' }" class="link"> 
                 동현이네 집 </router-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
         
           <b-nav-item-dropdown right>
             <template #button-content>
-              <b-icon icon="person-circle" font-scale="2"></b-icon>회원정보
+              <b-icon icon="person-circle" font-scale="2"></b-icon> 회원정보
             </template>
             <b-dropdown-item href="#">
               <router-link :to="{ name: 'join' }" class="link">
@@ -70,13 +70,13 @@
               </router-link>
             </b-dropdown-item>
             <b-dropdown-item href="#">
-              <router-link :to="{ name: 'house' }" class="m-2 link">
+              <router-link :to="{ name: 'house' }" class="link">
                 <b-icon icon="house-fill" font-scale="1"></b-icon> 비밀번호 찾기 </router-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item-dropdown right>
             <template #button-content>
-              <b-icon icon="clipboard" font-scale="2"></b-icon>게시판
+              <b-icon icon="clipboard" font-scale="2"></b-icon> 게시판
             </template>
             <b-dropdown-item href="#">
               <router-link :to="{ name: 'board' }" class="link">
@@ -84,7 +84,7 @@
               </router-link>
             </b-dropdown-item>
             <b-dropdown-item href="#">
-              <router-link :to="{ name: 'house' }" class="m-2 link"> 
+              <router-link :to="{ name: 'house' }" class="link"> 
                 <b-icon icon="question-square" font-scale="1"></b-icon> QnA 게시판 </router-link>
             </b-dropdown-item>
           </b-nav-item-dropdown>
