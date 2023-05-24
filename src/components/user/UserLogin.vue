@@ -5,11 +5,8 @@
       <b-col></b-col>
       <b-col cols="6">
         <div>
-      <b-card
-    text-variant="black"
-    
-  >
-  <img src = "@/assets/hlogo3.png" width="40%">
+      <b-card text-variant="black">
+      <img src = "@/assets/hlogo3.png" width="40%">
   
     <b-card-text>
       
