@@ -209,6 +209,7 @@ export default {
         if(this.form.name.length > 0) this.isValidName=true;
     },
     submit() {
+        //아이디 값이랑 이름 값 true로 안바껴서 그냥 반대로함
         if(this.isValidId) {
             alert("아이디를 입력해 주세요.");
         }
@@ -218,7 +219,7 @@ export default {
         else if(!this.isValidRepw) {
             alert("비밀번호 재확인을 입력해 주세요.");
         }
-        else if(!this.isValidName){
+        else if(this.isValidName){
             alert("이름을 입력해주세요.");
         }
         
