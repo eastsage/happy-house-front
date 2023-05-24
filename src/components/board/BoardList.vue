@@ -7,7 +7,12 @@
         </b-row>
         <b-row class="mb-1">
             <b-col class="text-right">
-                <b-button variant="outline-primary" v-if="isAdmin" @click="moveWrite()">글쓰기</b-button>
+                <div v-if="!userInfo && userInfo.role == 'admin'">
+                    <b-button variant="outline-primary" @click="moveWrite()">글쓰기</b-button>
+                </div>
+                <div v-else>
+                    <b-alert show variant="light">관리자만 글쓰기가 가능합니다.</b-alert>
+                </div>
                 <!-- ADMIN만 글쓰기 가능하게 바꿔야함 -->
             </b-col>
         </b-row>
@@ -35,6 +40,9 @@
 
 <script>
 import { listArticle } from "@/api/board";
+import { mapState } from "vuex";
+
+const memberStore = "memberStore";
 
 export default {
     name: "BoardList",
@@ -68,13 +76,9 @@ export default {
         );
     },
     computed:{
-        isAdmin(){
-            if(this.$session.get("user").role=="admin"){
-                return true;
-            }
-            return false;
-        }
+        ...mapState(memberStore, ["userInfo"]),
     },
+
     methods: {
         moveWrite() {
             this.$router.push({ name: "boardwrite" });
