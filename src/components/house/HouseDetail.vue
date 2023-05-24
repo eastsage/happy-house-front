@@ -7,6 +7,11 @@
         ><h3>{{ housedeal.aptName }}</h3>
       {{ housedeal.aptCode }}</b-col>
     </b-row>
+    <div>
+      <b-icon-suit-heart-fill font-scale="2"></b-icon-suit-heart-fill>
+      <!-- <b-icon-suit-heart-fill font-scale="2" v-if="inInterest" @click="toggleInterest"></b-icon-suit-heart-fill>
+      <b-icon-suit-heart v-else @click="toggleInterest"></b-icon-suit-heart> -->
+    </div>
     <br>
     <b-row>
       <b-col>
@@ -34,14 +39,37 @@
 import { mapState } from "vuex";
 
 const houseStore = "houseStore";
+// const memberStore = "memberStore";
 
 export default {
   name: "HouseDetail",
+  props: ['aptCode'],
   computed: {
     ...mapState(houseStore, ["housedeal"]),
     // house() {
     //   return this.$store.state.house;
     // },
+  //   inInterest(){
+  //     if
+  //   },
+  //   isInInterests(){
+  //     let cnt = 0;
+      
+  //     this.interests.forEach(elem => {
+  //       if(elem.aptCode === this.aptCode) cnt++;
+  //     });
+  //     if(cnt > 0) return true;
+  //     return false;
+  //   },
+  //   ...mapState(memberStore, ["isLogin", "isLoginError", "userInfo"]),
+  //   ...mapState(houseStore, ["houseList"]),
+  // },
+  // methods:{
+  //   toggleInterest(){
+  //     let isInInterests = this.isInInterests;
+  //     if(isInInterests) this.del({aptCode : this.aptCode, userInfo : this.userInfo});
+  //     else this.insert({aptCode :this.aptCode, userInfo: this.userInfo});
+  //   }
   },
   filters: {
     price(value) {
