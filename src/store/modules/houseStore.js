@@ -1,4 +1,4 @@
-import { sidoList, gugunList, dongList, houseList,getHouseDeal, getHouseGraph } from "@/api/house.js";
+import { sidoList, gugunList, dongList, houseList,getHouseDeal, getHouseGraph, getReview } from "@/api/house.js";
 
 const houseStore = {
     namespaced: true,
@@ -9,7 +9,8 @@ const houseStore = {
         houses: [],
         house: null,
         housedeal: null,
-        housegraph: []
+        housegraph: [],
+        housereviewlist: [],
     },
     getters: {
         getHouses: (state) => {
@@ -57,6 +58,10 @@ const houseStore = {
         },
         SET_HOUSE_GRAPH(state, housegraph) {
             state.housegraph = housegraph
+        },
+        SET_HOUSE_REVIEW(state, housereviewlist) {
+            state.housereviewlist = housereviewlist;
+            console.log(state.housereviewlist);
         }
     },
     actions: {
@@ -130,6 +135,19 @@ const houseStore = {
                 ({ data }) => {
                     console.log(data);
                     commit("SET_HOUSE_GRAPH", data);
+                },
+                (error) => {
+                    console.log(error);
+                }
+            )
+            
+        },
+        async review({ commit }, aptCode) {
+            await getReview(
+                aptCode,
+                ({ data }) => {
+                    console.log(data);
+                    commit("SET_HOUSE_REVIEW", data);
                 },
                 (error) => {
                     console.log(error);
