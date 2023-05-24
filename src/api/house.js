@@ -29,5 +29,9 @@ async function getHouseGraph(aptCode, success, fail) {
     await house.get(`/map/detailApt/graph/${aptCode}`).then(success).catch(fail);
 }
 
+async function getReview(aptCode, success, fail) {
+    console.log(aptCode);
+    await house.get(`/map/detailApt/review/${aptCode}`).then(success).catch(fail);
+}
 
-export { sidoList, gugunList, dongList, houseList , getHouseDeal, getHouseGraph};
+export { sidoList, gugunList, dongList, houseList , getHouseDeal, getHouseGraph, getReview};
