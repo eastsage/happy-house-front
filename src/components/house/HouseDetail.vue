@@ -1,16 +1,25 @@
 <template>
   <b-container v-if="housedeal" class="bv-example-row">
+    <br>
+    
     <b-row>
       <b-col
-        ><h3>{{ housedeal.aptCode }}</h3></b-col
-      >
+        ><h3>{{ housedeal.aptName }}</h3></b-col>
     </b-row>
-    <b-row class="mb-2 mt-1">
-      <b-col><b-img :src="require('@/assets/apt.png')" fluid-grow></b-img></b-col>
+    <br>
+    <b-row>
+      <b-col>
+        <b-alert show variant="secondary">주소 : {{ housedeal.address }}</b-alert>
+      </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="secondary">aptName : {{ housedeal.aptName }}</b-alert>
+        <b-alert show variant="secondary">주변 선별진료소 : {{ housedeal.name }}</b-alert>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <b-alert show variant="secondary">평당 가격 : {{ Math.floor(housedeal.price * 100000000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }}</b-alert>
       </b-col>
     </b-row>
     
