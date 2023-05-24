@@ -21,13 +21,9 @@
                                 required
                                 autocomplete="off"
                             ></b-form-input>
-                            <b-button variant="outline-secondary" class="check-button" @click="duplicateID">중복 검사</b-button>
                         </div>
                     </b-form-group>
-                    <div v-show="checkedId" class="msg">
-                        <div v-if="isValidId" class="primary">사용 가능한 아이디입니다.</div>
-                        <div v-else class="danger">{{errMsgForId}}</div>
-                    </div>
+                    
 
                     <b-form-group class="font-weight-bold" label-align="left" id="input-group-2" label="비밀번호:" label-for="input-2">
                         <b-input-group v-if="showPassword">
@@ -126,13 +122,9 @@
                                 required
                                 autocomplete="off"
                             ></b-form-input>
-                            <b-button variant="outline-secondary" class="check-button" @click="duplicateName">중복 검사</b-button>
                         </div>
                     </b-form-group>
-                    <div v-show="checkedName" class="msg">
-                        <div v-if="isValidName" class="primary">사용 가능한 아이디입니다.</div>
-                        <div v-else class="danger">{{errMsgForName}}</div>
-                    </div>
+                    
                     
                     <div class="d-flex justify-content-center">
                         <b-button class="submit-button" type="submit" variant="outline-primary" @click="submit">가입하기</b-button>
@@ -162,9 +154,7 @@ export default {
             showPassword: false,
             showRepassword: false,
 
-            checkedId: false,
             checkedRepw:false,
-            checkedName: false,
 
             isValidId:false,
             isValidPw:false,
@@ -201,48 +191,12 @@ export default {
     retoggleShow() {
         this.showRepassword = !this.showRepassword;
     },
-    duplicateID() {
-        this.checkedId=true;
-
-        if(this.form.id.length > 0) {
-            http.post("/api/user/id/check", {
-                id:this.form.id
-            })
-            .then(response => {
-                if(response.data.result == "available") {
-                    this.isValidId=true;
-                }
-                else {
-                    this.isValidId=false;
-                    this.errMsgForId='이미 사용 중인 아이디입니다.';
-                }
-            })
-        }
-        else {
-            this.errMsgForId='아이디를 입력 하세요.';
-        }
+    
+    
+    checkId() {
+        if(this.form.id.length > 0) this.isValidId=true;
     },
-    duplicateName() {
-        this.checkedName=true;
-
-        if(this.form.name.length > 0) {
-            http.post("/api/user/name/check", {
-                name:this.form.name
-            })
-            .then(response => {
-                if(response.data.result == "available") {
-                    this.isValidName=true;
-                }
-                else {
-                    this.isValidName=false;
-                    this.errMsgForName='이미 사용 중인 이름입니다.';
-                }
-            })
-        }
-        else {
-            this.errMsgForName='이름을 입력 하세요.';
-        }
-    },
+    
     checkPw() {
         if(this.form.password.length > 0) this.isValidPw=true;
     },
@@ -251,9 +205,12 @@ export default {
         if(this.form.password == this.form.repassword) this.isValidRepw=true;
         else this.isValidRepw=false;
     },
+    checkName() {
+        if(this.form.name.length > 0) this.isValidName=true;
+    },
     submit() {
-        if(!this.isValidId) {
-            alert("아이디 중복 검사를 해주세요.");
+        if(this.isValidId) {
+            alert("아이디를 입력해 주세요.");
         }
         else if(!this.isValidPw) {
             alert("비밀번호를 입력해 주세요.");
@@ -261,9 +218,10 @@ export default {
         else if(!this.isValidRepw) {
             alert("비밀번호 재확인을 입력해 주세요.");
         }
-        else if(!this.isValidName) {
-            alert("이름 중복 검사를 해주세요.");
+        else if(!this.isValidName){
+            alert("이름을 입력해주세요.");
         }
+        
         else {
             http.post("/api/user/join", {
                 id:this.form.id,
