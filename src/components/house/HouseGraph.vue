@@ -1,11 +1,23 @@
 <template>
     <b-container v-if="housegraph" class="bv-example-row">
-        <b-row class="mb-2 mt-1">
-            <b-col><b-img :src="require('@/assets/apt.png')" fluid-grow></b-img></b-col>
-        </b-row>
         <div>
             <b-row>
+                <b-col><h3>실시간 잔존 매물</h3></b-col>
+            </b-row>
+            <br>
+            <!-- <b-row>
+                {{ housegraph }}
+            </b-row> -->
+            
+            <br>
+            <b-table striped hover :items="realDeal" :fields="fields">
+                <template #cell(index)="data">
+                    {{ data.index + 1 }}
+                </template>
+            </b-table>
+            <b-row>
                 <b-col></b-col>
+                
                 <b-col cols="8">
                     <b-form-select
                         v-model="selected"
@@ -20,16 +32,21 @@
                         class="md-2 mt-3"
                         variant="outline-primary"
                         @click="selectGraph('push')"
-                        >데이터 추가</b-button
-                    >
-                    <b-tooltip target="tooltip-target" triggers="hover">
+                        >데이터 추가</b-button>
+                    <!-- <b-tooltip target="tooltip-target" triggers="hover">
                         그래프 위 라벨을 클릭해서 해당 그래프를 <b>제거</b> 할 수 있습니다
-                    </b-tooltip>
+                    </b-tooltip> -->
                 </b-col>
                 <b-col></b-col>
             </b-row>
+            <br>
+            <b-row>
+                <b-col>
+                그래프 위 라벨을 클릭해서 해당 그래프를 <b>제거</b> 할 수 있습니다
+                </b-col>
+            </b-row>
         </div>
-
+        <br>
         <div class="chart-container" v-if="isChartContainerReady">
             <canvas ref="chartCanvas" id="myChart" width="1200" height="300"></canvas>
         </div>
@@ -56,9 +73,14 @@ export default {
             chart: null,
             selected: null,
             options: [],
+            realDeal: [],
+            fields: ['index','area','dealAmount']
         };
     },
-    created() {},
+    created() {
+        this.realDeal = this.housegraph.filter((element) => ((element.cancelDealType == 'O'))),
+        this.xx = 1;
+    },
     mounted() {
         this.makeOptions();
         this.isChartContainerReady = true;
@@ -66,6 +88,8 @@ export default {
     },
     computed: {
         ...mapState(houseStore, ["housegraph"]),
+       
+    
     },
     filters: {
         price(value) {
@@ -149,7 +173,7 @@ export default {
                 rand.push(Math.floor(Math.random() * 256));
 
                 this.chartData.datasets.push({
-                    label: this.selected,
+                    label: this.selected + "년(만원)",
                     backgroundColor: `rgba(${rand[0]}, ${rand[1]}, ${rand[2]}, 0.2)`,
                     borderColor: `rgba(${rand[0]}, ${rand[1]}, ${rand[2]}, 1)`,
                     data: this.databind(2015),
