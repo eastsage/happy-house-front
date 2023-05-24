@@ -4,7 +4,8 @@
     
     <b-row>
       <b-col
-        ><h3>{{ housedeal.aptName }}</h3></b-col>
+        ><h3>{{ housedeal.aptName }}</h3>
+      {{ housedeal.aptCode }}</b-col>
     </b-row>
     <div>
       <b-icon-suit-heart-fill font-scale="2"></b-icon-suit-heart-fill>
