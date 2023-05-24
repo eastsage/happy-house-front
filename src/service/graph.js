@@ -15,7 +15,8 @@ const showBarChart = function (chartId, labels, datasets) {
             maintainAspectRatio: false,
             scales: {
                 y: {
-                    beginAtZero: true,
+                    beginAtZero: true
+                    
                 },
             },
         },
