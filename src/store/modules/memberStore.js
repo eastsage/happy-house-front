@@ -70,6 +70,7 @@ const memberStore = {
                     console.log(data);
                     if (data.message === "success") {
                         commit("SET_USER_INFO", data.userInfo);
+                        sessionStorage.setItem("userInfo", JSON.stringify(data.userInfo));
                         // console.log("3. getUserInfo data >> ", data);
                     } else {
                         console.log("유저 정보 없음!!!!");
