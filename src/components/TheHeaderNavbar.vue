@@ -97,8 +97,7 @@
         <!-- after login -->
         <b-navbar-nav class="ml-auto" v-if="userInfo">
           <b-nav-item class="align-self-center">
-            <b-avatar variant="primary" v-text="userInfo.userid.charAt(0).toUpperCase()"></b-avatar>
-            {{ userInfo.username }}({{ userInfo.userid }})님 환영합니다.
+            {{ userInfo.username }}님 환영합니다.
           </b-nav-item>
           <b-nav-item class="align-self-center">
             <router-link :to="{ name: 'mypage' }" class="link align-self-center">내정보보기</router-link>
@@ -156,7 +155,7 @@ export default {
       // this.$store.dispatch("userLogout", this.userInfo.userid);
       this.userLogout(this.userInfo.userid);
       sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
-      sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
+      //sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
       if (this.$route.path != "/") this.$router.push({ name: "main" });
     },
   },

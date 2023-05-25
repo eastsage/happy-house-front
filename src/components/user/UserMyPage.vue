@@ -1,10 +1,6 @@
 <template>
   <b-container class="mt-4" v-if="userInfo">
-    <b-row>
-      <b-col>
-        <b-alert variant="secondary" show><h3>내정보</h3></b-alert>
-      </b-col>
-    </b-row>
+    
     <b-row>
       <b-col></b-col>
       <b-col cols="8">
@@ -16,35 +12,22 @@
           <hr class="my-4" />
 
           <b-container class="mt-4">
+            
             <b-row>
               <b-col cols="2"></b-col>
-              <b-col cols="2" align-self="end">아이디</b-col
-              ><b-col cols="4" align-self="start">{{ userInfo.userid }}</b-col>
-              <b-col cols="2"></b-col>
-            </b-row>
-            <b-row>
-              <b-col cols="2"></b-col>
-              <b-col cols="2" align-self="end">이름</b-col
+              <b-col cols="2" align-self="end">ID</b-col
               ><b-col cols="4" align-self="start">{{ userInfo.username }}</b-col>
               <b-col cols="2"></b-col>
             </b-row>
             <b-row>
               <b-col cols="2"></b-col>
-              <b-col cols="2" align-self="end">이메일</b-col
-              ><b-col cols="4" align-self="start">{{ userInfo.email }}</b-col>
+              <b-col cols="2" align-self="end">ROLE</b-col
+              ><b-col cols="4" align-self="start">{{ userInfo.roles }}</b-col>
               <b-col cols="2"></b-col>
             </b-row>
-            <b-row>
-              <b-col cols="2"></b-col>
-              <b-col cols="2" align-self="end">가입일</b-col
-              ><b-col cols="4" align-self="start">{{ userInfo.joindate }}</b-col>
-              <b-col cols="2"></b-col>
-            </b-row>
+            
           </b-container>
-          <hr class="my-4" />
-
-          <b-button variant="primary" href="#" class="mr-1">정보수정</b-button>
-          <b-button variant="danger" href="#">회원탈퇴</b-button>
+          
         </b-jumbotron>
       </b-col>
       <b-col></b-col>
@@ -62,6 +45,12 @@ export default {
   components: {},
   computed: {
     ...mapState(memberStore, ["userInfo"]),
+  },
+  created() {
+    if(this.userInfo.roles == 'ROLE_CUSTOMER') this.userInfo.roles = '일반 사용자';
+    else if(this.userInfo.roles == 'ROLE_SELLER') this.userInfo.roles = '판매자';
+    else if(this.userInfo.roles == 'ROLE_ADMIN') this.userInfo.roles = '관리자';
+
   },
 };
 </script>
