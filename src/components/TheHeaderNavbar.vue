@@ -151,6 +151,7 @@ export default {
             // this.$store.dispatch("userLogout", this.userInfo.userid);
             this.userLogout(this.userInfo.userid);
             sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
+            sessionStorage.removeItem("userInfo");
             //sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
             if (this.$route.path != "/") this.$router.push({ name: "main" });
         },
